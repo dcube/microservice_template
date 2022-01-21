@@ -1,0 +1,9 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AppConfigurationEndpoint": "https://acf-proxaffiche-web-dev.azconfig.io",
+    "ServiceBusConnection__fullyQualifiedNamespace": "sbu-proxaffiche-web-dev.servicebus.windows.net"
+  }
+}
