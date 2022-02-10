@@ -3,12 +3,12 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using Template.Domain.Constants;
-using Template.ProcessApis.Api1.Domain;
+using Template.ProcessApis.Api1.RequestModel;
 using Template.ProcessApis.Api1.Services;
 
 namespace Template.ProcessApis.Api1.Functions
 {
-    public class FunctionServiceBus
+    internal class FunctionServiceBus
     {
         private readonly IService1 _service1;
 
@@ -18,7 +18,7 @@ namespace Template.ProcessApis.Api1.Functions
         }
 
         [FunctionName("FunctionServiceBus")]
-        public void Run([ServiceBusTrigger("myqueue", Connection = "ServiceBus")]string queueItem, ILogger log)
+        public void Run([ServiceBusTrigger("facturation", Connection = "ServiceBusConnection")]string queueItem, ILogger log)
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {queueItem}");
 
@@ -28,15 +28,15 @@ namespace Template.ProcessApis.Api1.Functions
                 throw new ArgumentException(nameof(queueItem));
             }
 
-            Command command;
-            if ((command = JsonConvert.DeserializeObject<Command>(queueItem)) == null)
+            OrderRequest order;
+            if ((order = JsonConvert.DeserializeObject<OrderRequest>(queueItem)) == null)
             {
                 throw new ApplicationException(Errors.BUS_DESERIALIZATION);
             }
 
             try
             {
-                _service1.Save(command);
+                _service1.Save(order);
             }
             catch (Exception ex)
             {

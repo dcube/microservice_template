@@ -3,19 +3,19 @@ using System.Threading.Tasks;
 using Template.Domain;
 using Template.GraphQL;
 using Template.GraphQL.Query;
-using Template.ProcessApis.Api1.Domain;
+using Template.ProcessApis.Api1.RequestModel;
 using Template.ProcessApis.Api1.ResponseModels;
 using Template.Sqlbdd1.Dto;
 
 namespace Template.ProcessApis.Api1.Services
 {
-    public class Service1 : IService1
+    internal class Service1 : IService1
     {
         private readonly IOrderSystemApiFunction _orderSystemApiFunction;
 
         public Service1(IOrderSystemApiFunction orderSystemApiFunction)
         {
-            _orderSystemApiFunction = orderSystemApiFunction ?? throw new ApplicationException(nameof(orderSystemApiFunction);
+            _orderSystemApiFunction = orderSystemApiFunction ?? throw new ApplicationException(nameof(orderSystemApiFunction));
         }
 
         public async Task<OrderResponse> GetAsync(int id)
@@ -37,7 +37,7 @@ namespace Template.ProcessApis.Api1.Services
             });
         }
 
-        public Result Save(OrderDto Order)
+        public Result Save(OrderRequest Order)
         {
             return new Result() { IsSuccess = true};
         }

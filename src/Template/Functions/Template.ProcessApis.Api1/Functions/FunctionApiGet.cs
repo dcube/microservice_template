@@ -12,7 +12,7 @@ using Template.ProcessApis.Api1.Services;
 
 namespace Template.ProcessApis.Api1.Functions
 {
-    public class FunctionApiGet
+    internal class FunctionApiGet
     {
         private readonly IAccessTokenProvider _tokenProvider;
         private readonly IService1 _service1;
@@ -39,7 +39,7 @@ namespace Template.ProcessApis.Api1.Functions
 
             try
             {
-                return new OkObjectResult(_service1.Get(commandNumber));
+                return new OkObjectResult(await _service1.GetAsync(commandNumber));
             }
             catch (Exception ex)
             {
@@ -52,8 +52,6 @@ namespace Template.ProcessApis.Api1.Functions
                     Message = errorMessage
                 });
             }
-
-            return new OkObjectResult(_tokenProvider);
         }
     }
 }

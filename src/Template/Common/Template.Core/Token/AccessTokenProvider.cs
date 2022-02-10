@@ -21,10 +21,10 @@ namespace Template.Core.Token
 
         public AccessTokenProvider(IConfiguration configuration, ILogger<AccessTokenProvider> logger)
         {
-            string issuer = configuration[ConfigurationKeys.ISSUER] ?? throw new ArgumentNullException(nameof(issuer));
-            string tenantId = configuration[ConfigurationKeys.TENANT] ?? throw new ArgumentNullException(nameof(tenantId));
-            string audience = configuration[ConfigurationKeys.AUDIENCE] ?? throw new ArgumentNullException(nameof(audience));
-            string instance = configuration[ConfigurationKeys.INSTANCE] ?? throw new ArgumentNullException(nameof(instance));
+            string issuer = configuration[GlobalConfigurationKeys.ISSUER] ?? throw new ArgumentNullException(nameof(issuer));
+            string tenantId = configuration[GlobalConfigurationKeys.TENANT] ?? throw new ArgumentNullException(nameof(tenantId));
+            string audience = configuration[GlobalConfigurationKeys.AUDIENCE] ?? throw new ArgumentNullException(nameof(audience));
+            string instance = configuration[GlobalConfigurationKeys.INSTANCE] ?? throw new ArgumentNullException(nameof(instance));
 
             this.issuer = $"{issuer}{tenantId}/";
             this.audience = audience;

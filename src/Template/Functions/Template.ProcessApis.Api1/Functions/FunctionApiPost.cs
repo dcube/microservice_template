@@ -11,11 +11,11 @@ using System;
 using Template.ProcessApis.Api1.Services;
 using Template.Domain.Constants;
 using Newtonsoft.Json;
-using Template.ProcessApis.Api1.Domain;
+using Template.ProcessApis.Api1.RequestModel;
 
 namespace Template.ProcessApis.Api1.Functions
 {
-    public class FunctionApiPost
+    internal class FunctionApiPost
     {
         private readonly IAccessTokenProvider _tokenProvider;
         private readonly IService1 _service1;
@@ -36,7 +36,7 @@ namespace Template.ProcessApis.Api1.Functions
 
             string requestBody;
             Result authorizationResult;
-            Command command;
+            OrderRequest order;
 
             if (!(authorizationResult = await _tokenProvider.ValidateTokenAsync(request)).IsSuccess)
             {
@@ -49,14 +49,14 @@ namespace Template.ProcessApis.Api1.Functions
             }
             log.LogInformation(requestBody);
 
-            if((command = JsonConvert.DeserializeObject<Command>(requestBody)) == null)
+            if((order = JsonConvert.DeserializeObject<OrderRequest>(requestBody)) == null)
             {
                 return new BadRequestObjectResult(new { IsSuccess = false, Message = Errors.POST_BAD_REQUEST_CONTENT });
             }
 
             try
             {
-                return new OkObjectResult(_service1.Save(command));
+                return new OkObjectResult(_service1.Save(order));
             }
             catch (Exception ex)
             {
