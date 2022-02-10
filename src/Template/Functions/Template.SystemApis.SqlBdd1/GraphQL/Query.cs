@@ -2,6 +2,8 @@
 using HotChocolate.Types;
 using System.Linq;
 using Template.GraphQL.Middleware.Abstraction;
+using Template.Sqlbdd1.Dto;
+using Template.SystemApis.SqlBdd1.Repositories.Context;
 
 namespace Template.SystemApis.SqlBdd1.GraphQL
 {
@@ -9,9 +11,9 @@ namespace Template.SystemApis.SqlBdd1.GraphQL
     {
         [UseSelection]
         [UseFiltering]
-        public IQueryable<EnteteCommandeAchat> GetEntetesCommandeAchat([Service] OrderContext context)
+        public IQueryable<OrderDto> GetEntetesCommandeAchat([Service] SqlBdd1Context context)
         {
-            return context.EntetesCommandeAchat;
+            return context.Order;
         }
 
     }

@@ -8,10 +8,13 @@
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="5.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
+    <PackageReference Include="Refit" Version="6.2.16" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Template.Core\Template.Core.csproj" />
     <ProjectReference Include="..\..\Common\Template.Domain\Template.Domain.csproj" />
+    <ProjectReference Include="..\..\Common\Template.GraphQL\Template.GraphQL.csproj" />
+    <ProjectReference Include="..\..\Common\Template.Sqlbdd1.Dto\Template.Sqlbdd1.Dto.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

@@ -1,6 +1,6 @@
-﻿namespace Template.ProcessApis.Api1.Domain
+﻿namespace Template.Sqlbdd1.Dto
 {
-    public class Command
+    public class OrderDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

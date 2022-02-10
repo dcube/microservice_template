@@ -1,9 +1,11 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Core.Configuration;
 using Template.GraphQL.Extensions;
 using Template.SystemApis.SqlBdd1.GraphQL;
+using Template.SystemApis.SqlBdd1.Repositories.Context;
 
 [assembly: FunctionsStartup(typeof(Template.SystemApis.SqlBdd1.Startup))]
 namespace Template.SystemApis.SqlBdd1
@@ -34,13 +36,9 @@ namespace Template.SystemApis.SqlBdd1
 
         public IServiceCollection ConfigureContext(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<OrderContext>(options =>
+            services.AddDbContext<SqlBdd1Context>(options =>
             {
-                options.UseSqlServer(string.Format(
-                    configuration[Constants.ConnectionString],
-                    configuration[Constants.Host],
-                    configuration[Constants.User],
-                    configuration[Constants.Password]));
+                options.UseSqlServer(configuration["ConnectionString"]);
             }, ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
             return services;

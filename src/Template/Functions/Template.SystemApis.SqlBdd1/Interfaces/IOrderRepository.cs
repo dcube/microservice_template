@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Template.Sqlbdd1.Dto;
 
 namespace Template.SystemApis.SqlBdd1.Interfaces
 {
     public interface IOrderRepository : IRepository
     {
-        Task<IEnumerable<CommandeAchatDto>> SaveCommandeAchatList(List<CommandeAchatDto> commandeList);
+        Task<int> UpdateOrderAsync(OrderDto entetCommandeAchat);
 
-        Task<int> UpdateEnteteCommandeAchat(EnteteCommandeAchat entetCommandeAchat);
+        Task<int> InsertOrderAsync(OrderDto entetCommandeAchat);
 
-        Task<List<LigneCommandeAchat>> UpdateLignesCommandeAchat(List<LigneCommandeAchat> lignesCommandeAchatInput);
-
-        Task SaveCommandeAchatStatus(string numeroCommande, string statut);
-
-        Task UpdateEnteteCommandeAchatLienBonDeCommande(string numeroCommande, string lienBonDeCommande);
-
-        Task<IEnumerable<RapprochementCommandeAchat>> InsertRapprochementCommandeAchat(List<RapprochementCommandeAchat> rapprochements);
+        Task<OrderDto> GetOrderAsync(int id);
     }
 }
